@@ -31,7 +31,10 @@ login_manager.init_app(app)
 Bootstrap(app)
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+db_uri = os.environ.get("DATABASE_URL")
+if db_uri and db_uri.startswith("postgres://"):
+    db_uri.replace("postgres://", "postgresql://")
+app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 Base = declarative_base()
