@@ -9,14 +9,14 @@ from werkzeug import Response
 from werkzeug.exceptions import abort
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import relationship
+
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 from flask_gravatar import Gravatar
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
-import sqlite3
+
 from flask_migrate import Migrate
 import os
 from dotenv import load_dotenv
@@ -82,10 +82,7 @@ class Comment(db.Model, Base):
     blog_post_id = db.Column(db.Integer, ForeignKey("blog_posts.id"))
 
 
-# connect_db = sqlite3.connect("blog.db")
-# cursor_ = connect_db.cursor()
-# cursor_.execute("ALTER TABLE blog_posts ADD COLUMN author_id")
-# cursor_.close()
+
 db.create_all()
 
 
