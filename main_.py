@@ -31,7 +31,7 @@ login_manager.init_app(app)
 Bootstrap(app)
 
 ##CONNECT TO DB
-db_uri = os.environ.get("DATABASE_URL")
+db_uri = os.environ.get("HEROKU_POSTGRESQL_TEAL_URL")
 if db_uri and db_uri.startswith("postgres://"):
     db_uri = db_uri.replace("postgres://", "postgresql://")
 app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
